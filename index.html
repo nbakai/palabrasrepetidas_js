@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Desafío primera sesión presencial</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <p id="texto-entrada">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nisl urna, posuere ut est non,
+        posuere hendrerit massa. Suspendisse potenti. Duis vulputate ex eget turpis efficitur dapibus.
+        Maecenas semper ligula eget dapibus finibus. Nullam dignissim, erat eu scelerisque convallis,
+        lacus nunc interdum massa, non porta mauris ante sed elit. Sed lobortis felis augue, in
+        scelerisque
+        nisl ornare sit amet. Cras quis metus et risus facilisis posuere. Praesent at suscipit ipsum.
+        Aliquam erat volutpat. Donec non orci et ex dictum sagittis quis nec justo. Praesent non massa
+        vitae nulla scelerisque condimentum sed eu mauris. Phasellus pharetra quam vel metus
+        rhoncus,
+        sit amet eleifend justo sollicitudin. Praesent facilisis sem vitae vestibulum malesuada. Sed
+        suscipit
+        felis et iaculis tempor. Sed quam leo, dapibus sit amet elit et, dictum suscipit nulla. Phasellus
+        quis ipsum eleifend turpis volutpat blandit. Pellentesque non ullamcorper lectus, sit amet finibus
+        magna. Donec bibendum tincidunt tortor, et rutrum ante finibus ut. In eleifend id magna feugiat
+        finibus.
+        Quisque consequat, justo sed rutrum semper, augue enim commodo lorem, eget consectetur
+        urna ante vel leo.
+        Donec iaculis metus urna, eu convallis lorem commodo eget. Ut vitae fringilla ipsum. Proin non
+        tellus porta,
+        mattis lorem et, elementum lacus. Etiam congue neque sapien, posuere porta turpis rhoncus
+        vitae. Suspendisse
+        eu semper dolor, ac blandit magna. Nam aliquet sem vitae risus tempor, in posuere lectus
+        dictum. Maecenasvitae enim eget enim ornare euismod. Integer ut nisl sit amet lacus sollicitudin rutrum quis vel
+        diam.
+        Suspendisse ac mattis leo. Etiam eu efficitur nisi. Sed porta viverra odio a tincidunt. Nam et felis
+        ipsum.
+        Sed aliquam id enim at tempor. Sed pretium sapien accumsan urna faucibus congue. Duis varius
+        ligula sed est
+        placerat suscipit. Nunc ultrices nisi vitae faucibus rhoncus. Maecenas malesuada risus vel
+        consectetur
+        venenatis. Phasellus in accumsan mauris. Sed at mi sit amet tortor sagittis imperdiet sit amet in
+        augue.
+        Phasellus convallis tincidunt nibh, sed luctus nisi dignissim sit amet. Maecenas eget felis a turpis
+        tristique
+        tincidunt quis id nulla. Pellentesque lacinia, metus a vestibulum mattis, metus odio varius augue,
+        non ornare
+        mauris elit sed est. Vivamus dapibus mauris ex, non efficitur metus condimentum eget. Duis
+        lacinia arcu nec
+        mauris scelerisque egestas vitae sit amet ligula. Vivamus mollis nibh ut placerat laoreet. Integer
+        arcu tellus,
+        dignissim sit amet tortor nec, commodo facilisis elit.
+        </p>
+        <div id="resultados" >
+            <h1>Resultados</h1>
+            
+        </div>
+    </body>
+</html>
+
+
+<script>
+    
+    function charCount(){
+        var textParag = getText();
+        var charArray = textParag.toLowerCase().match(/[a-zA-Z]/g);
+        var result = document.getElementById('resultados');
+        
+        total = count(charArray);
+        
+        for (const i in total) {
+            var div = document.getElementsByTagName('div')[0];
+            var p = document.createElement("p");
+            div.appendChild(p);
+            var strong = document.createElement("strong");
+            p.appendChild(strong);
+            var d = (` ${i} : `);
+            strong.textContent = d;
+            var span = document.createElement("span");
+            p.appendChild(span);
+            span.appendChild(document.createTextNode(` ${total[i]}`));
+     
+        }
+       
+       
+        
+    }
+    function wordCount(){
+        var textParag = getText();
+        var wordArray = textParag.toLowerCase().replace(/\W/g, ' ').split(" ");
+        
+        var total_word = count(wordArray);
+        
+        var div = document.getElementsByTagName('div')[0];
+        var p = document.createElement("p");
+        div.appendChild(p);
+        var strong = document.createElement("strong");
+        var texto_strong = document.createTextNode("Palabras: ");
+        strong.appendChild(texto_strong);
+        p.appendChild(strong);
+        for (const i in total_word) {
+            var div = document.getElementsByTagName('div')[0];
+            var p = document.createElement("p");
+            div.appendChild(p);
+            var strong = document.createElement("strong");
+            p.appendChild(strong);
+            // var texto_strong = 'Letra: '
+            var d = (` ${i} : `);
+            // strong.textContent = texto_strong + d;
+            strong.textContent = d;
+            var span = document.createElement("span");
+            p.appendChild(span);
+            span.appendChild(document.createTextNode(` ${total_word[i]}`));
+            // var d = (`${property}: ${total_word[property]}`)
+            // var p_title = document.createElement('p');
+            // p_title.textContent = d;
+            // div.appendChild(p_title);
+           
+        }
+     
+        // console.log(total_word);
+        
+    }
+
+    function getText(){
+        var results = document.getElementById('resultados');
+        var paragraph = document.getElementById('texto-entrada');
+        var textParag = paragraph.textContent;
+
+        return textParag;
+    }
+
+    function count(arr){
+        var obj = {};
+        arr.forEach(function(ele){
+            if (ele in obj){
+                    obj[ele] += 1;
+            }else {
+                obj[ele] = 1;
+            } 
+        });
+         return obj;
+    }
+
+  charCount();
+  wordCount();
+             
+
+</script>
